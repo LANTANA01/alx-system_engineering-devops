@@ -1,0 +1,19 @@
+https://imgur.com/a/ZyHiq3E
+
+
+1. **Server**:
+   - We add a new server to improve redundancy and distribute the workload.
+   - Having multiple servers ensures better availability and fault tolerance.
+
+2. **Load Balancer (HAproxy)**:
+   - The load balancer distributes incoming requests across multiple servers.
+   - It ensures even traffic distribution, prevents overload, and enhances performance.
+   - Configuring it as a cluster with another load balancer provides failover capability.
+
+3. **Split Components**:
+   - We separate components onto different servers for several reasons:
+     - **Web Server**: Handles HTTP requests, serves static files (e.g., HTML, CSS).
+     - **Application Server**: Executes dynamic code (e.g., Python, Node.js), processes requests.
+     - **Database Server**: Stores structured data (e.g., MySQL, PostgreSQL).
+     - Isolating components improves scalability, security, and maintenance.
+

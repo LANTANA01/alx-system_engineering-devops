@@ -1,0 +1,45 @@
+
+https://imgur.com/a/u2AD1u6
+
+
+
+1. **Two Additional Servers**:
+   - We add two more servers to distribute the workload and improve redundancy.
+   - Having multiple servers ensures better availability and fault tolerance.
+
+2. **Web Server (Nginx)**:
+   - The web server (Nginx) handles incoming HTTP requests.
+   - It serves static files (HTML, CSS, JavaScript) and forwards dynamic requests to the application server.
+   - Nginx improves performance and load balancing.
+
+3. **Application Server**:
+   - The application server executes dynamic code (e.g., Python, Node.js).
+   - It processes user requests, performs business logic, and communicates with the database.
+   - Separating application logic from the web server enhances scalability.
+
+4. **Load Balancer (HAproxy)**:
+   - The load balancer distributes incoming requests across multiple servers.
+   - It uses a distribution algorithm (e.g., round-robin, least connections) to balance the load.
+   - HAproxy ensures high availability and prevents overload on any single server.
+
+5. **Database (MySQL)**:
+   - The database stores structured data (e.g., user profiles, product information).
+   - MySQL provides data persistence and retrieval.
+   - We set up a Primary-Replica (Master-Slave) cluster for redundancy.
+
+6. **Primary-Replica Database Cluster**:
+   - The Primary (Master) node handles write operations (inserts, updates).
+   - The Replica (Slave) nodes replicate data from the Primary and handle read operations.
+   - This setup improves performance and provides failover capability.
+
+7. **Issues with this Infrastructure**:
+   - **Single Point of Failure (SPOF)**:
+     - The load balancer can become a SPOF if it fails.
+     - Consider adding a redundant load balancer.
+   - **Security Issues**:
+     - No firewall mentioned; we need proper network security rules.
+     - No HTTPS (SSL/TLS); secure communication is essential.
+   - **No Monitoring**:
+     - Lack of monitoring tools means we can't detect issues promptly.
+     - Implement monitoring for performance, availability, and security.
+

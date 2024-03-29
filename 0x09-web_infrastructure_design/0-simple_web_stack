@@ -1,0 +1,50 @@
+
+https://imgur.com/a/Q1irYpk
+
+
+
+1. **What is a Server?**
+   - A server is a computer or software system that provides services, resources, or functionality to other computers or clients over a network.
+   - Servers can handle various tasks, such as hosting websites, managing databases, serving files, handling email, and more.
+   - In the context of web hosting, a server typically refers to a physical machine or a virtual instance that stores and delivers web content to users.
+
+2. **Role of the Domain Name**:
+   - A domain name is a human-readable address used to identify resources on the internet (e.g., websites, email servers).
+   - It provides a way for users to access websites without needing to remember numeric IP addresses.
+   - For example, `www.foobar.com` is a domain name.
+
+3. **Type of DNS Record for www in www.foobar.com**:
+   - The DNS record for `www.foobar.com` is typically a **CNAME (Canonical Name)** record.
+   - It points the `www` subdomain to the same IP address as the root domain (`foobar.com`).
+
+4. **Role of the Web Server**:
+   - The web server (e.g., Nginx, Apache) handles incoming HTTP requests from users' browsers.
+   - It serves static files (HTML, CSS, JavaScript) directly and forwards dynamic requests to the application server.
+   - The web server ensures that the correct content is delivered to users based on their requests.
+
+5. **Role of the Application Server**:
+   - The application server executes dynamic code (e.g., Python, Node.js) that generates content on the fly.
+   - It processes user requests, interacts with databases, and performs business logic.
+   - For example, it handles user authentication, retrieves personalized data, and constructs dynamic web pages.
+
+6. **Role of the Database**:
+   - The database (e.g., MySQL, PostgreSQL) stores structured data.
+   - It holds information such as user profiles, product details, blog posts, etc.
+   - The application server communicates with the database to read or write data.
+
+7. **Server Communication with User's Computer**:
+   - When a user requests a website, their computer sends an HTTP request to the server's IP address.
+   - The server processes the request, constructs an HTTP response, and sends it back to the user.
+   - The user's browser renders the website based on the received response.
+
+8. **Issues with this Infrastructure**:
+   - **Single Point of Failure (SPOF)**:
+     - Having only one server means any failure (hardware, software, or network) affects the entire system.
+     - Solutions include redundancy (multiple servers) or failover mechanisms.
+   - **Downtime during Maintenance**:
+     - When deploying new code, the web server needs to be restarted, causing temporary unavailability.
+     - Load balancers and rolling updates can minimize downtime.
+   - **Scalability Limitations**:
+     - With only one server, handling high traffic becomes challenging.
+     - Scaling horizontally (adding more servers) is essential for handling increased load.
+

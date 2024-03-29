@@ -1,0 +1,38 @@
+https://imgur.com/a/bJ3OoKP
+
+
+Certainly! Let's design the infrastructure step by step, considering the requirements and explaining each component:
+
+1. **Three Servers**:
+   - We add three servers for redundancy, fault tolerance, and load distribution.
+   - Having multiple servers ensures availability even if one fails.
+
+2. **Firewalls**:
+   - Firewalls protect servers from unauthorized access and malicious traffic.
+   - They filter incoming and outgoing network traffic based on predefined security rules.
+
+3. **SSL Certificate (HTTPS)**:
+   - We use an SSL certificate to enable HTTPS (encrypted traffic).
+   - HTTPS ensures secure communication between users' browsers and the web server.
+   - It prevents eavesdropping and data tampering.
+
+4. **Monitoring Clients (Data Collectors)**:
+   - Monitoring tools collect data about server performance, availability, and security.
+   - We deploy monitoring clients (e.g., Sumologic) to gather metrics and logs.
+   - Monitoring helps detect issues, optimize performance, and ensure reliability.
+
+5. **Terminating SSL at Load Balancer Level**:
+   - Terminating SSL at the load balancer decrypts incoming HTTPS traffic.
+   - This avoids the overhead of decrypting on each application server.
+   - However, it exposes the internal network to unencrypted traffic.
+
+6. **Single MySQL Server for Writes**:
+   - Having only one MySQL server capable of accepting writes is a single point of failure.
+   - If it fails, write operations (inserts, updates) are affected.
+   - Consider setting up a Primary-Replica (Master-Slave) cluster for redundancy.
+
+7. **Servers with Same Components**:
+   - Having identical components (database, web server, application server) on all servers can lead to issues:
+     - **Scalability**: Difficult to scale horizontally (add more servers) for increased traffic.
+     - **Maintenance**: Updates and changes need to be applied consistently to all servers.
+
