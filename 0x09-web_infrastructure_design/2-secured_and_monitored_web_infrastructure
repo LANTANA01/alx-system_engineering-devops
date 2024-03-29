@@ -1,8 +1,6 @@
 https://imgur.com/a/bJ3OoKP
 
 
-Certainly! Let's design the infrastructure step by step, considering the requirements and explaining each component:
-
 1. **Three Servers**:
    - We add three servers for redundancy, fault tolerance, and load distribution.
    - Having multiple servers ensures availability even if one fails.
