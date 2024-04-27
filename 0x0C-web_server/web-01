@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# server-01 login command
+ssh -i ~/.ssh/id_rsa ubuntu@54.208.215.244
