@@ -9,6 +9,8 @@ apt-get install -y haproxy
 echo "ENABLED=1" |sudo tee /etc/default/haproxy
 
 # Listen to web1 and web2 servers                                                                                                                                                                                                                                                                                                                                                   echo "
+echo "
+
    listen load_balancer
    bind *:80
    mode http
