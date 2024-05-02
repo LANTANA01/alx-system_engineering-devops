@@ -1,24 +1,40 @@
 #!/usr/bin/env bash
-# Installing and setting up haproxy
+# Install HAProxy
 
-apt-get install -y software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-1.8
-apt-get -y update
-apt-get install -y haproxy
+echo -e "Updating and doing some minor checks...\n"
 
-echo "ENABLED=1" |sudo tee /etc/default/haproxy
+sudo apt-get update -y -qq && sudo apt-get install -y haproxy -qq
+echo -e "\n"
 
-# Listen to web1 and web2 servers                                                                                                                                                                                                                                                                                                                                                   echo "
-echo "
+echo -e "\nSetting up some minor stuff.\n"
 
-   listen load_balancer
-   bind *:80
-   mode http
-   balance roundrobin
-   option httpclose
-   option forwardfor
-   server 48696-web-01 54.208.215.244:80 check
-   server 48696-web-02 54.144.146.48:80  check
-" |sudo tee /etc/haproxy/haproxy.cfg
+# Backup the default server config file
+sudo cp /etc/haproxy/haproxy.cfg haproxy_default.backup
 
-service haproxy start
+# Define the server configuration
+server_config=\
+"
+defaults
+  mode http
+  timeout client 15s
+  timeout connect 10s
+  timeout server 15s
+  timeout http-request 10s
+frontend clickviral-tech-frontend
+    bind *:80
+    default_backend clickviral-tech-backend
+backend clickviral-tech-backend
+    balance roundrobin
+    server 48696-web-01 54.208.215.244:80 check
+    server 48696-web-02 54.144.146.48:80  check
+"
+
+# Write the server configuration to the HAProxy config file
+echo "$server_config" | sudo dd status=none of=/etc/haproxy/haproxy.cfg
+
+# Enable HAProxy to be started by the init script
+echo "ENABLED=1" | sudo dd status=none of=/etc/default/haproxy
+
+# Start the HAProxy service
+sudo service haproxy start
+
