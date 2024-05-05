@@ -2,7 +2,7 @@
 # Using puppet to connect without password
 
 file { '/etc/ssh/ssh_config':
-  ensure => file,
+  ensure => 'file',
 }
 
 file_line { 'Turn off passwd auth':
