@@ -1,0 +1,16 @@
+
+defaults
+  mode http
+  timeout client 15s
+  timeout connect 10s
+  timeout server 15s
+  timeout http-request 10s
+
+frontend tilan-tech-frontend
+    bind *:80
+    default_backend tilan-tech-backend
+
+backend tilan-tech-backend
+    balance roundrobin
+    server 48696-web-01 54.208.215.244:80 check
+    server 48696-web-02 54.144.146.48:80  check
